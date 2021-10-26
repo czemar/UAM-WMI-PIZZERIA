@@ -1,0 +1,17 @@
+@import '../../styles/utilities/utils';
+
+.badge {
+  position: absolute;
+  right: -15px;
+  bottom: -15px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-primary;
+  border-radius: $border-radius;
+  color: $color-background;
+  font-size: 0.85em;
+  font-weight: 700;
+}

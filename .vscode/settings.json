@@ -1,0 +1,56 @@
+{
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  "postcss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.configFile": "./.stylelintrc",
+  "stylelint.validate": ["scss"],
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "files.autoSaveDelay": 500,
+  "cSpell.words": [
+    "browserslist",
+    "compat",
+    "craco",
+    "fontawesome",
+    "formik",
+    "fortawesome",
+    "miragejs",
+    "nestjs",
+    "nrwl",
+    "PZZA",
+    "Souce",
+    "stylelint",
+    "subprice",
+    "tailwindcss"
+  ],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "node_modules/": true,
+    "**/.gitkeep": true,
+    "tmp/": true,
+    "tools/": true,
+    ".editorconfig": true,
+    ".prettierignore": true,
+    ".prettierrc": true,
+    "yarn.lock": true,
+    "package-lock.json": true,
+    "**/*jest*": true,
+    "**/.browserslistrc": true,
+    "**/*babel*": true,
+    "**/*spec*": true,
+    "**/tsconfig*": true,
+    "**/.eslintrc.json": true
+  }
+}

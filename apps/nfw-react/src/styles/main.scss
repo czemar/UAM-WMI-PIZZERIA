@@ -1,0 +1,19 @@
+@import '@czemar/style-reset/reset';
+@import './utilities/utils';
+
+// Global classes
+@import './global/ornament';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: $font-family-primary;
+}
+
+html,
+body,
+main {
+  background-color: $color-background;
+}

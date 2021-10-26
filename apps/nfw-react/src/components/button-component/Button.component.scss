@@ -1,0 +1,10 @@
+@import '../../styles/utilities/utils';
+
+.button {
+  padding: 10px 25px;
+  background: linear-gradient(90deg, #{$color-primary}, #{$color-secondary});
+  border-radius: $border-radius;
+  color: $color-text-dark;
+  font-family: $font-family-primary;
+  font-weight: 700;
+}

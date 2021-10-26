@@ -1,0 +1,9 @@
+@import '../utilities/utils';
+
+.ornament {
+  hr {
+    border-color: $color-primary;
+    margin: 0.5em;
+    width: calc(100% - 1em);
+  }
+}

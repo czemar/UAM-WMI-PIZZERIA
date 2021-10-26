@@ -1,5 +1,13 @@
 import { v4 } from 'uuid';
-import { Body, Controller, Get, Logger, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CreateOrderDto, Ingredient, Pizza, Sauce } from '@nfw/api-interfaces';
 
 const sauces = [
@@ -25,40 +33,25 @@ const pizzas = [
     id: v4(),
     name: 'MARGHERITA',
     price: 15,
-    ingredients: [
-      ingredients[0].id,
-      ingredients[1].id
-    ]
+    ingredients: [ingredients[0].id, ingredients[1].id],
   },
   {
     id: v4(),
     name: 'FUNGHI',
     price: 16,
-    ingredients: [
-      ingredients[0].id,
-      ingredients[1].id,
-      ingredients[2].id
-    ]
+    ingredients: [ingredients[0].id, ingredients[1].id, ingredients[2].id],
   },
   {
     id: v4(),
     name: 'VESUVIO',
     price: 17,
-    ingredients: [
-      ingredients[0].id,
-      ingredients[1].id,
-      ingredients[3].id,
-    ]
+    ingredients: [ingredients[0].id, ingredients[1].id, ingredients[3].id],
   },
   {
     id: v4(),
     name: 'SALAMI',
     price: 17,
-    ingredients: [
-      ingredients[0].id,
-      ingredients[1].id,
-      ingredients[4].id,
-    ]
+    ingredients: [ingredients[0].id, ingredients[1].id, ingredients[4].id],
   },
   {
     id: v4(),
@@ -69,7 +62,7 @@ const pizzas = [
       ingredients[1].id,
       ingredients[2].id,
       ingredients[3].id,
-    ]
+    ],
   },
   {
     id: v4(),
@@ -80,7 +73,7 @@ const pizzas = [
       ingredients[1].id,
       ingredients[3].id,
       ingredients[5].id,
-    ]
+    ],
   },
   {
     id: v4(),
@@ -91,7 +84,7 @@ const pizzas = [
       ingredients[1].id,
       ingredients[4].id,
       ingredients[5].id,
-    ]
+    ],
   },
   {
     id: v4(),
@@ -103,11 +96,11 @@ const pizzas = [
       ingredients[4].id,
       ingredients[7].id,
       ingredients[8].id,
-    ]
+    ],
   },
   {
     id: v4(),
-    name:'COLOSSEUM',
+    name: 'COLOSSEUM',
     price: 22,
     ingredients: [
       ingredients[0].id,
@@ -116,39 +109,39 @@ const pizzas = [
       ingredients[3].id,
       ingredients[6].id,
       ingredients[7].id,
-    ]
+    ],
   },
 ];
 
 @Controller()
 export class AppController {
-  constructor() {}
-
   @Get('/pizza')
   getPizzas(): Promise<Pizza[]> {
-    return new Promise(resolve => setTimeout(() => resolve(pizzas), 1500));
+    return new Promise((resolve) => setTimeout(() => resolve(pizzas), 1500));
   }
 
   @Get('/sauce')
   getSauces(): Promise<Sauce[]> {
-    return new Promise(resolve => setTimeout(() => resolve(sauces), 2100));
+    return new Promise((resolve) => setTimeout(() => resolve(sauces), 2100));
   }
 
   @Get('/ingredient')
   getIngredients(): Promise<Ingredient[]> {
-    return new Promise(resolve => setTimeout(() => resolve(ingredients), 1800));
+    return new Promise((resolve) =>
+      setTimeout(() => resolve(ingredients), 1800)
+    );
   }
 
   @Post('/order')
   @UsePipes(new ValidationPipe())
-  postOrder(
-    @Body() order: CreateOrderDto
-  ) {
+  postOrder(@Body() order: CreateOrderDto) {
     Logger.log({
       message: 'Order received',
-      order
+      order,
     });
 
-    return new Promise(resolve => setTimeout(() => resolve({ message: 'Order accepted!' }), 1300));
+    return new Promise((resolve) =>
+      setTimeout(() => resolve({ message: 'Order accepted!' }), 1300)
+    );
   }
 }

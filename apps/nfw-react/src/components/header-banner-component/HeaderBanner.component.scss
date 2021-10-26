@@ -1,0 +1,113 @@
+@import '../../styles/utilities/utils';
+
+.header-banner-wrapper {
+  display: flex;
+  overflow: auto;
+}
+
+.header-banner {
+  overflow: hidden;
+  width: 100vw;
+  flex-shrink: 0;
+  padding: 2em 0;
+
+  .title-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .title {
+    color: $color-text-primary;
+    font-family: $font-family-primary;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+
+    &-backdrop {
+      position: absolute;
+      z-index: -1;
+      top: 1rem;
+      bottom: 0;
+      display: flex;
+      overflow: visible;
+      max-width: 100vw;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-family: $font-family-primary;
+      font-size: 144px;
+      font-weight: 700;
+      opacity: 30%;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  .middle-section {
+    display: flex;
+    width: 100vw;
+    min-height: 400px;
+    align-items: center;
+  }
+
+  .navigation {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1em;
+
+    .btn {
+      $size: 28px;
+
+      display: flex;
+      width: $size;
+      height: $size;
+      align-items: center;
+      justify-content: center;
+      background-color: $color-primary;
+      border-radius: $border-radius;
+      box-shadow: 3px 1px 19px -7px rgb(150 152 164 / 100%);
+      color: $color-text-primary;
+      transition: background-color 0.2s ease;
+
+      &.prev > * {
+        transform: translateX(-1px);
+      }
+
+      &.next > * {
+        transform: translateX(1px);
+      }
+    }
+  }
+
+  .ingredients-list {
+    margin-bottom: 30px;
+    color: $color-text-primary;
+    font-size: 14px;
+    font-weight: 400;
+
+    > *:not(:last-child)::after {
+      content: ', ';
+    }
+  }
+
+  .price-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .price {
+    color: $color-primary;
+    font-family: $font-family-secondary;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .subprice {
+    color: $color-text-secondary;
+    font-size: 14px;
+  }
+}

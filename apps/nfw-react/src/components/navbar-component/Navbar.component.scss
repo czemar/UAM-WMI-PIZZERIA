@@ -1,0 +1,42 @@
+@import '../../styles/utilities/utils';
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em;
+  background-color: $color-background;
+
+  .nav-list {
+    display: flex;
+  }
+
+  .nav-item {
+    position: relative;
+    color: $color-text-primary;
+    font-family: $font-family-primary;
+    font-weight: 600;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: darken($color-text-primary, 20);
+    }
+
+    &-logo {
+      color: $color-primary;
+      font-size: 1em;
+      font-weight: 700;
+
+      &:hover {
+        color: darken($color-primary, 30);
+      }
+    }
+
+    &:not(:last-child) {
+      margin-right: 1.5em;
+    }
+
+    svg {
+      font-size: 1.2em;
+    }
+  }
+}

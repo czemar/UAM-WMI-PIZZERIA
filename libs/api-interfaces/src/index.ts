@@ -1,4 +1,11 @@
-import { ArrayMinSize, IsArray, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import {
+  ArrayMinSize,
+  IsArray,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export interface Ingredient {
@@ -43,7 +50,7 @@ export class CreateOrderDto {
   @ArrayMinSize(1)
   @Type(() => PartialOrderPizzaDto)
   pizza: PartialOrderPizzaDto[];
-  
+
   @ValidateNested({ each: true })
   @IsArray()
   @ArrayMinSize(1)
@@ -52,5 +59,5 @@ export class CreateOrderDto {
   sauce: PartialOrderSauceDto[];
 
   @IsNumber()
-  total: number; 
+  total: number;
 }
