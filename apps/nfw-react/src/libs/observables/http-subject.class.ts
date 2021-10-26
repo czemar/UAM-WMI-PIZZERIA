@@ -18,6 +18,10 @@ export class HttpSubject<T> extends Subject<T> {
     return this._status === ESubjectStatus.IDLE;
   }
 
+  public get crashed(): boolean {
+    return this._status === ESubjectStatus.CRASHED;
+  }
+
   public pend(promise: Promise<IResponse<T>>) {
     this._status = ESubjectStatus.PENDING;
     promise
@@ -31,7 +35,6 @@ export class HttpSubject<T> extends Subject<T> {
       })
       .catch((e) => {
         this._status = ESubjectStatus.CRASHED;
-        console.log('Pend error');
         console.error(e);
       });
   }

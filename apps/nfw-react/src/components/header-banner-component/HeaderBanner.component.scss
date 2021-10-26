@@ -1,6 +1,42 @@
 @import '../../styles/utilities/utils';
 
 .header-banner-wrapper {
+  position: relative;
+
+  .navigation {
+    position: absolute;
+    top: 40%;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1em;
+
+    .btn {
+      $size: 28px;
+
+      display: flex;
+      width: $size;
+      height: $size;
+      align-items: center;
+      justify-content: center;
+      background-color: $color-primary;
+      border-radius: $border-radius;
+      box-shadow: 3px 1px 19px -7px rgb(150 152 164 / 100%);
+      color: $color-text-primary;
+      transition: background-color 0.2s ease;
+
+      &.prev > * {
+        transform: translateX(-1px);
+      }
+
+      &.next > * {
+        transform: translateX(1px);
+      }
+    }
+  }
+}
+
+.header-banner-scroll {
   display: flex;
   overflow: auto;
 }
@@ -47,43 +83,18 @@
   .middle-section {
     display: flex;
     width: 100vw;
-    min-height: 400px;
+    min-height: 300px;
     align-items: center;
-  }
-
-  .navigation {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: 1em;
-
-    .btn {
-      $size: 28px;
-
-      display: flex;
-      width: $size;
-      height: $size;
-      align-items: center;
-      justify-content: center;
-      background-color: $color-primary;
-      border-radius: $border-radius;
-      box-shadow: 3px 1px 19px -7px rgb(150 152 164 / 100%);
-      color: $color-text-primary;
-      transition: background-color 0.2s ease;
-
-      &.prev > * {
-        transform: translateX(-1px);
-      }
-
-      &.next > * {
-        transform: translateX(1px);
-      }
-    }
+    background-image: url('../../assets/pizza.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
   .ingredients-list {
     margin-bottom: 30px;
-    color: $color-text-primary;
+    color: $color-text-secondary;
+    font-family: $font-family-primary;
     font-size: 14px;
     font-weight: 400;
 

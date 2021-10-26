@@ -10,6 +10,7 @@ import { IngredientsService } from './ingredients.service';
 import { IIngredient } from '../interfaces/ingredient.interface';
 
 export class PizzaService extends Service {
+
   // --- Dependencies ---
   private readonly ingredientsService: IngredientsService =
     IngredientsService.instance();
@@ -48,9 +49,9 @@ export class PizzaService extends Service {
       map(({ pizzas, ingredients }) =>
         pizzas.map((pizza) => ({
           ...pizza,
-          ingredients: ingredients.map(
-            (ingredient) =>
-              ingredients.find((i) => i.id === ingredient.id) ||
+          ingredients: pizza.ingredients.map(
+            (ingString) =>
+              ingredients.find((ing) => ing.id === ingString) ||
               ({} as IIngredient)
           ),
         }))
@@ -59,7 +60,7 @@ export class PizzaService extends Service {
   }
 
   /**
-   * Compares two pizzas objects
+   * Compares two pizza objects
    * @param firstPizza first pizza object co compare
    * @param secondPizza second pizza object to compare
    * @returns {boolean} true if pizzas are the same or false otherwise
@@ -73,4 +74,5 @@ export class PizzaService extends Service {
       firstPizza.size === secondPizza.size
     );
   }
+
 }

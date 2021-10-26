@@ -18,6 +18,7 @@
     "browserslist",
     "compat",
     "craco",
+    "cssmodule",
     "fontawesome",
     "formik",
     "fortawesome",
