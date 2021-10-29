@@ -7,8 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Component } from 'react';
 import { IPizzaWithIngredients } from '../../interfaces/pizza.interface';
 import { Button } from '../button-component/Button.component';
-import './HeaderBanner.component.scss';
+import './header-banner.component.scss';
 import { currency } from '../../pipes/currency.pipe';
+
 export class HeaderBanner extends Component<{
   pizzas: IPizzaWithIngredients[];
 }> {
@@ -46,8 +47,6 @@ export class HeaderBanner extends Component<{
       ),
       behavior: 'smooth'
     });
-
-    console.log();
   }
 
   render() {

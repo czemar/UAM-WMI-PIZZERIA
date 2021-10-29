@@ -1,10 +1,22 @@
 @import '../../styles/utilities/utils';
 
 .button {
-  padding: 10px 25px;
+  padding: 10px 20px;
   background: linear-gradient(90deg, #{$color-primary}, #{$color-secondary});
   border-radius: $border-radius;
   color: $color-text-dark;
   font-family: $font-family-primary;
+  font-size: 14px;
   font-weight: 700;
+  text-transform: uppercase;
+
+  svg {
+    margin-right: 0.5em;
+  }
+
+  &.secondary {
+    border: 1px solid #{$color-primary};
+    background: 0;
+    color: $color-primary;
+  }
 }

@@ -1,3 +1,4 @@
+import { map } from 'rxjs';
 import { EStorageKeys } from '../enums/storage-keys.enum';
 import { IPizza } from '../interfaces/pizza.interface';
 import { PersistentSubject } from '../libs/observables/persistent-subject.class';
@@ -35,17 +36,12 @@ export class CartService extends Service {
   }
 
   /**
-   * Count the amount of specified pizzas in cart
+   * Count the amount of pizzas in cart
    * @param pizza pizza type to count
    */
-  public count(pizza: IPizza) {
-    let count = 0;
-
-    this.list$.value.forEach(
-      (pizzaInCart) =>
-        (count += Number(this.pizzaService.compare(pizza, pizzaInCart)))
-    );
-
-    return count;
+  public count() {
+    return this.list$.pipe(
+      map(pizzas => pizzas.length)
+    )
   }
 }

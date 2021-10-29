@@ -1,3 +1,4 @@
+import { Dialog } from '../libs/dialog/dialog.class';
 import { Page } from '../libs/page/page.class';
 
 export interface IRoute {
@@ -8,4 +9,5 @@ export interface IRoute {
 
 export interface IRouteOptions {
   exact?: boolean;
+  dialog?: typeof Dialog;
 }
