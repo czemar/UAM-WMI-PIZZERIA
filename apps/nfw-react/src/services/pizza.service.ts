@@ -1,5 +1,5 @@
-import { forkJoin, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { forkJoin, Observable, catchError } from 'rxjs';
+import { map, take, tap, filter } from 'rxjs/operators';
 import { Service } from '../libs/service/service.class';
 import {
   IPizza,
@@ -8,6 +8,7 @@ import {
 import { HttpSubject } from '../libs/observables/http-subject.class';
 import { IngredientsService } from './ingredients.service';
 import { IIngredient } from '../interfaces/ingredient.interface';
+import { httpJoin } from '../libs/observables/http-join.class';
 
 export class PizzaService extends Service {
 
@@ -16,12 +17,12 @@ export class PizzaService extends Service {
     IngredientsService.instance();
 
   // --- Observables ---
-  private readonly list$ = new HttpSubject<IPizza[]>();
+  private readonly list$ = new HttpSubject<IPizza[]>([]);
 
   /**
    * Returns list of pizzas from API
    */
-  public list(): Observable<IPizza[]> {
+  public list(): HttpSubject<IPizza[]> {
     if (this.list$.idle) {
       this.list$.fetch('/api/pizza');
     }
@@ -34,7 +35,17 @@ export class PizzaService extends Service {
    */
   public byId(id: string) {
     return this.list().pipe(
-      map((pizzas) => pizzas.find((pizza) => pizza.id === id))
+      map((pizzas) => pizzas.find((pizza: IPizza) => pizza.id === id))
+    );
+  }
+
+  /**
+   * Returns pizza object based by id (joined with ingredients)
+   * @param id pizza's id
+   */
+  public byIdWithIngredients(id: string) {
+    return this.listWithIngredients().pipe(
+      map((pizzas) => pizzas.find((pizza: IPizzaWithIngredients) => pizza.id === id))
     );
   }
 
@@ -42,16 +53,25 @@ export class PizzaService extends Service {
    * Returns list of pizzas from API (joined with ingredients)
    */
   public listWithIngredients(): Observable<IPizzaWithIngredients[]> {
-    return forkJoin({
-      pizzas: this.list().pipe(take(1)),
-      ingredients: this.ingredientsService.list().pipe(take(1)),
+    return httpJoin({
+      pizzas: this.list().pipe(
+        filter(list => list.length > 0),
+        take(1)
+      ),
+      ingredients: this.ingredientsService.list().pipe(
+        filter(list => list.length > 0),
+        take(1)
+      ),
     }).pipe(
+      catchError(err => {
+        throw err;
+      }),
       map(({ pizzas, ingredients }) =>
-        pizzas.map((pizza) => ({
+        pizzas.map((pizza: IPizza) => ({
           ...pizza,
           ingredients: pizza.ingredients.map(
-            (ingString) =>
-              ingredients.find((ing) => ing.id === ingString) ||
+            (ingString: string) =>
+              ingredients.find((ing: IIngredient) => ing.id === ingString) ||
               ({} as IIngredient)
           ),
         }))

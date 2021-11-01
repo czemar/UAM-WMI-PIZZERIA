@@ -2599,6 +2599,11 @@
     "@types/react" "*"
     csstype "^3.0.2"
 
+"@types/url-params-parser@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/url-params-parser/-/url-params-parser-1.0.0.tgz#8d22fe06ea07b80952a420a7851db93d6fd221a5"
+  integrity sha512-NABiTlbup9xra50v6GNcbGXpJXARZbD5ZdMwFTkS0ua7hCpIHf2ICfjzsO89cO0JUAyNkcnndUuwDvLVOhoLIA==
+
 "@types/validator@13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.0.0.tgz#365f1bf936aeaddd0856fc41aa1d6f82d88ee5b3"
@@ -8937,6 +8942,11 @@ postcss-safe-parser@^6.0.0:
   resolved "https://registry.yarnpkg.com/postcss-safe-parser/-/postcss-safe-parser-6.0.0.tgz#bb4c29894171a94bc5c996b9a30317ef402adaa1"
   integrity sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==
 
+postcss-scss@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-4.0.2.tgz#39ddcc0ab32f155d5ab328ee91353d67a52d537b"
+  integrity sha512-xfdkU128CkKKKVAwkyt0M8OdnelJ3MRcIRAPPQkRpoPeuzWY3RIeg7piRCpZ79MK7Q16diLXMMAD9dN5mauPlQ==
+
 postcss-scss@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-4.0.1.tgz#6f5827f4457dac35fcc5a0b3de566cfb377db1e7"
@@ -11140,6 +11150,11 @@ url-loader@^4.1.1:
     loader-utils "^2.0.0"
     mime-types "^2.1.27"
     schema-utils "^3.0.0"
+
+url-params-parser@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/url-params-parser/-/url-params-parser-1.0.4.tgz#10003b232e9cd13e2ba2374a1abc6e1aa8ff1b67"
+  integrity sha512-0m6BqGpY2OetTZ3UPTLKkbTfUHigsX2YhrzORT9iYiyUJ/SP2WJ3cggg2YWtvMs36GPwK9Q44ffddyarniu2Tg==
 
 url@^0.11.0:
   version "0.11.0"

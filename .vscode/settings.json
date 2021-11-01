@@ -16,6 +16,7 @@
   "files.autoSaveDelay": 500,
   "cSpell.words": [
     "browserslist",
+    "checkmark",
     "compat",
     "craco",
     "cssmodule",
@@ -51,7 +52,7 @@
     "**/.browserslistrc": true,
     "**/*babel*": true,
     "**/*spec*": true,
-    "**/tsconfig*": true,
     "**/.eslintrc.json": true
-  }
+  },
+  "vscode-edge-devtools.themes": "Dark"
 }

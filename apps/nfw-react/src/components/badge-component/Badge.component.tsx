@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import './Badge.component.scss';
+import './badge.component.scss';
 
 export class Badge extends Component<{ count: number }> {
   render() {

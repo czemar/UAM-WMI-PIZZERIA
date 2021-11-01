@@ -40,3 +40,39 @@
     }
   }
 }
+
+.search-bar {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  padding: 0.5em 1.5em 0;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+
+  &.closed {
+    max-height: 0;
+    opacity: 0%;
+  }
+
+  &.open {
+    max-height: 48px;
+    opacity: 100%;
+  }
+
+  .search-input {
+    flex-grow: 1;
+    padding-left: 0.75em;
+    background-color: lighten($color-background, 7);
+    border-radius: #{$border-radius} 0 0 #{$border-radius};
+    color: $color-text-primary;
+    outline: none;
+  }
+
+  .search-button {
+    padding: 0.5em 0.75em;
+    background-color: $color-primary;
+    border-radius: 0 #{$border-radius} #{$border-radius} 0;
+    color: $color-text-primary;
+  }
+}

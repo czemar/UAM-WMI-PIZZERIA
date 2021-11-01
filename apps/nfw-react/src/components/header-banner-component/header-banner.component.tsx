@@ -6,9 +6,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Component } from 'react';
 import { IPizzaWithIngredients } from '../../interfaces/pizza.interface';
-import { Button } from '../button-component/Button.component';
+import { Button } from '../button-component/button.component';
 import './header-banner.component.scss';
 import { currency } from '../../pipes/currency.pipe';
+import { translate } from '../../pipes/translate.pipe';
+import { Link } from 'react-router-dom';
 
 export class HeaderBanner extends Component<{
   pizzas: IPizzaWithIngredients[];
@@ -83,7 +85,7 @@ export class HeaderBanner extends Component<{
                   {/* Price */}
                   <div className="w-1/2 price-box">
                     <div className="price">{ currency(pizza.price) }</div>
-                    <div className="subprice">for 32 cm size</div>
+                    <div className="subprice">{ translate('for 32 cm size') }</div>
                   </div>
 
                   {/* Ingredients and add to cart button */}
@@ -93,7 +95,9 @@ export class HeaderBanner extends Component<{
                         <span key={ingredient.id}>{ingredient.name}</span>
                       ))}
                     </div>
-                    <Button variant="primary">ADD TO BASKET</Button>
+                    <Link to={`/pizza/${pizza.id}`}>
+                      <Button variant="primary">{ translate('ADD TO CART') }</Button>
+                    </Link>
                   </div>
                 </div>
               </div>
