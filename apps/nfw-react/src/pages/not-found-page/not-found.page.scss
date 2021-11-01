@@ -1,0 +1,19 @@
+@import '../../styles/utilities/utils';
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  color: $color-primary;
+  font-family: $font-family-primary;
+
+  .t-404 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  .description {
+    margin-bottom: 20px;
+  }
+}

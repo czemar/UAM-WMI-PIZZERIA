@@ -1,0 +1,1 @@
+export type IValidationErrors = { [key: string]: { value: any, message: string }};

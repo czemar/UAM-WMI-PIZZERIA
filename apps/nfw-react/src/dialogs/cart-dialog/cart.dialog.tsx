@@ -1,6 +1,6 @@
 import React from 'react';
-import { DialogWrapper } from "../components/dialog-wrapper-component/DialogWrapper.component";
-import { Dialog } from "../libs/dialog/dialog.class";
+import { DialogWrapper } from "../../components/dialog-wrapper-component/dialog-wrapper.component";
+import { Dialog } from "../../libs/dialog/dialog.class";
 
 export class CartDialog extends Dialog {
   render() {
@@ -11,3 +11,4 @@ export class CartDialog extends Dialog {
     );
   }
 }
+ 

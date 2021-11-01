@@ -39,7 +39,7 @@
   }
 
   .ingredients-list {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     color: $color-text-secondary;
     font-family: $font-family-primary;
     font-size: 14px;
@@ -48,5 +48,12 @@
     > *:not(:last-child)::after {
       content: ', ';
     }
+  }
+
+  .price {
+    margin-bottom: 30px;
+    color: $color-primary;
+    font-size: 1.2em;
+    font-weight: bold;
   }
 }

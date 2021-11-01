@@ -10,6 +10,7 @@
     width: 100%;
     justify-content: space-between;
     padding: 1em;
+    pointer-events: none;
 
     .btn {
       $size: 28px;
@@ -23,6 +24,7 @@
       border-radius: $border-radius;
       box-shadow: 3px 1px 19px -7px rgb(150 152 164 / 100%);
       color: $color-text-primary;
+      pointer-events: all;
       transition: background-color 0.2s ease;
 
       &.prev > * {

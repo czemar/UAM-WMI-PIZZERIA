@@ -1,14 +1,19 @@
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject, OperatorFunction } from 'rxjs';
 import isString from 'lodash-es/isString';
 import { environment } from '../../environments/environment';
 import { IResponse } from '../../interfaces/response.interface';
 import { ESubjectStatus } from './subject-status.enum';
 
-export class HttpSubject<T> extends Subject<T> {
+export class HttpSubject<T> extends BehaviorSubject<T> {
+
+  public pipe = this.pipe as (...operations: OperatorFunction<any, any>[]) => HttpSubject<T>
+
   private _status: ESubjectStatus = ESubjectStatus.IDLE;
 
   private _rawSubject = new Subject<IResponse<T>>();
-  public readonly subscribeRaw = this._rawSubject.subscribe;
+  private _errorSubject = new Subject<Error>();
+
+  public readonly rawSubscribe = this._rawSubject.subscribe;
 
   public get pending(): boolean {
     return this._status === ESubjectStatus.PENDING;
@@ -30,13 +35,25 @@ export class HttpSubject<T> extends Subject<T> {
         return res.json();
       })
       .then((json) => {
-        this.next(json);
         this._status = ESubjectStatus.FINAL;
+        this.next(json);
       })
       .catch((e) => {
         this._status = ESubjectStatus.CRASHED;
-        console.error(e);
+        this._errorSubject.next(e);
+        this.error(e);
       });
+  }
+
+  public unsubscribe(): void {
+    super.unsubscribe();
+    this._rawSubject.complete();
+    this._errorSubject.complete();
+  }
+
+  public catchError(operator: (err: Error) => void): HttpSubject<T> {
+    this._errorSubject.subscribe(operator);
+    return this;
   }
 
   public fetch(request: RequestInfo, init?: RequestInit) {

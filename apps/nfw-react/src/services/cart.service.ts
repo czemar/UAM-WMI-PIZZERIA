@@ -4,19 +4,20 @@ import { IPizza } from '../interfaces/pizza.interface';
 import { PersistentSubject } from '../libs/observables/persistent-subject.class';
 import { Service } from '../libs/service/service.class';
 import { PizzaService } from './pizza.service';
+import { IPartialPizzaOrder } from '../interfaces/order.interface';
 
 export class CartService extends Service {
   // --- Dependencies ---
   private pizzaService: PizzaService = PizzaService.instance();
 
   // --- Observables ---
-  private list$ = new PersistentSubject<IPizza[]>([], EStorageKeys.CART);
+  private list$ = new PersistentSubject<IPartialPizzaOrder[]>([], EStorageKeys.CART);
 
   /**
    * Add pizza to cart
    * @param pizza pizza to add to cart
    */
-  public add(pizza: IPizza) {
+  public add(pizza: IPartialPizzaOrder) {
     this.list$.next([...this.list$.value, pizza]);
   }
 
@@ -24,7 +25,7 @@ export class CartService extends Service {
    * Remove pizza from cart
    * @param pizza pizza to remove from cart
    */
-  public removeOne(pizza: IPizza) {
+  public removeOne(pizza: IPartialPizzaOrder) {
     const indexToRemove = this.list$.value.findIndex((pizzaInCart) =>
       this.pizzaService.compare(pizza, pizzaInCart)
     );

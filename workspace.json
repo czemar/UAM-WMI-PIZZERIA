@@ -90,6 +90,7 @@
             "tsConfig": "apps/nfw-react/tsconfig.app.json",
             "assets": [
               "apps/nfw-react/src/favicon.ico",
+              "apps/nfw-react/src/manifest.json",
               "apps/nfw-react/src/assets"
             ],
             "styles": [],
