@@ -16,8 +16,12 @@ Commands which should be executed in terminal to run project
 
 `TODO :`
 ```
-- Interfejs w koszyku
+- Dodawanie sosu w koszyku
+  - RadialList - komponent
+- Interfejs sosu w koszyku
 - Możliwość złożenia zamówienia
+  - dialog checkout
+  - dialog finish
 - Stylowanie na wersji desktopowej
 ```
 

@@ -4,5 +4,5 @@ export interface ISelectOption {
 }
 
 export function selectOptionsFromEnum(enumerable: { [key: string]: string }) {
-  return Object.entries(enumerable).map(([value, label]) => ({ value, label }));
+  return Object.entries(enumerable).map(([value, label]) => ({ value: label, label }));
 }

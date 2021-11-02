@@ -8,7 +8,7 @@ import { Spinner } from '../../components/spinner-component/spinner.component';
 import { PizzaService } from '../../services/pizza.service';
 import { Subscription } from 'rxjs';
 import { Button } from '../../components/button-component/button.component';
-import { Select } from '../../components/select-component/select.cmponent';
+import { Select } from '../../components/select-component/select.component';
 import { ReactiveGroup } from '../../libs/reactive-forms/classes/reactive-group.class';
 import { ReactiveControl } from '../../libs/reactive-forms/classes/reactive-control.class';
 import { EPizzaSize } from '../../enums/pizza-size.enum';
@@ -92,14 +92,16 @@ export class PizzaDialog extends Dialog {
 
   // -- methods --
   private addToCart() {
-    const { pizza } = this.state;
+    const { pizza, details } = this.state;
 
     const ingredients = this.getSelectedIngredients();
     const finishedCustomization = true;
 
     const partialOrder = {
       id: pizza.id,
-      ingredients: ingredients
+      ingredients: ingredients,
+      price: this.getPrice(),
+      size: details.value.size
     } as IPartialPizzaOrder;
 
     this.cartService.add(partialOrder);

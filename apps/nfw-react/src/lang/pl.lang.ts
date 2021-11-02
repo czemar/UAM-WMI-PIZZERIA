@@ -8,5 +8,6 @@ export const pl = {
   'Add to cart': 'Dodaj do koszyka',
   'Summary': 'Podsumowanie',
   'PAGE NOT FOUND': 'NIE ZNALEZIONO STRONY',
-  'Go to home page': 'Przejdź do strony głównej'
+  'Go to home page': 'Przejdź do strony głównej',
+  'Order': 'Zamów'
 }
