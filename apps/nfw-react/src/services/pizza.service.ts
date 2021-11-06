@@ -9,6 +9,7 @@ import { HttpSubject } from '../libs/observables/http-subject.class';
 import { IngredientsService } from './ingredients.service';
 import { IIngredient } from '../interfaces/ingredient.interface';
 import { httpJoin } from '../libs/observables/http-join.class';
+import { IPartialPizzaOrder } from '../interfaces/order.interface';
 
 export class PizzaService extends Service {
 
@@ -93,6 +94,14 @@ export class PizzaService extends Service {
       firstPizza.id === secondPizza.id &&
       firstPizza.size === secondPizza.size
     );
+  }
+
+  /**
+   * Returns true if passed object is pizza
+   * @param pizza object to check
+   */
+  public isPizza(pizza: IPizza | IPartialPizzaOrder): boolean {
+    return Boolean(pizza.ingredients && pizza.id && pizza.price);
   }
 
 }

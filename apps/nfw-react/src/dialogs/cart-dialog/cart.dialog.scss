@@ -2,11 +2,12 @@
 
 .pizzas-container {
   position: relative;
+  padding-top: 1em;
   padding-bottom: 1em;
   border-bottom: 1px solid #{$color-primary};
 
-  &:not(:first-child) {
-    padding-top: 1em;
+  &:first-child {
+    margin-top: -1em;
   }
 }
 

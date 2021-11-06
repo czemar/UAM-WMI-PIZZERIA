@@ -65,7 +65,7 @@ export class CartDialog extends Dialog {
       this.setState({ total });
     })
   }
-  
+
   componentWillUnmount(): void {
     this.cartListSubscription?.unsubscribe();
     this.pizzasListSubscription?.unsubscribe();
@@ -94,7 +94,7 @@ export class CartDialog extends Dialog {
     return Object.values(groupBy(
       [...additionalIngredients.ingredients].map(
         id => this.getIngredientById(id)?.name
-      ), identity 
+      ), identity
     )).map((v) => v.length > 1 ? `${v.length} x ${v[0]}` : v[0]);
   }
 
@@ -108,7 +108,7 @@ export class CartDialog extends Dialog {
 
     if (!cart) {
       return (
-        <DialogWrapper title="Cart">
+        <DialogWrapper title={translate('Cart')}>
           <Spinner />
         </DialogWrapper>
       )
@@ -123,14 +123,14 @@ export class CartDialog extends Dialog {
     );
 
     return (
-      <DialogWrapper title="Cart" footer={footer}>
+      <DialogWrapper title={translate('Cart')} footer={footer}>
         <div className='cartDialog'>
           {!cart.length ?
             <p>{translate('Cart is empty')}</p>
           :
             ''
           }
-          {cart.map((partial, pIndex) => 
+          {cart.map((partial, pIndex) =>
             <div key={pIndex} className='pizzas-container'>
               <div className="w-3/4">
                 <div className="image"></div>
@@ -157,7 +157,7 @@ export class CartDialog extends Dialog {
             </div>
           )}
           <div className="total">
-            <div className="title">Total:</div>
+            <div className="title">{translate('Total')}:</div>
             <div className="sum">{currency(total)}</div>
           </div>
         </div>
@@ -165,4 +165,3 @@ export class CartDialog extends Dialog {
     );
   }
 }
- 

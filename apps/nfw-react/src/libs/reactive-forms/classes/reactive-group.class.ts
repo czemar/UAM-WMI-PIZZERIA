@@ -6,6 +6,7 @@ import { IReactiveAbstract } from '../interfaces/reactive-abstract.interface';
 import { IValidationErrors } from '../interfaces/validation-errors.interface';
 import { ReactiveArray } from './reactive-array.class';
 import { BehaviorSubject } from 'rxjs';
+import { ISetValueOptions } from '../interfaces/set-value-options.interface';
 
 export class ReactiveGroup {
 
@@ -76,9 +77,9 @@ export class ReactiveGroup {
     });
   }
 
-  public setValue(val: { [key: string]: any }) {
+  public setValue(val: { [key: string]: any }, options?: ISetValueOptions) {
     Object.entries(val).forEach(([key, value]) => {
-      this._controls[key].setValue(value);
+      this._controls[key].setValue(value, options);
     });
   }
 

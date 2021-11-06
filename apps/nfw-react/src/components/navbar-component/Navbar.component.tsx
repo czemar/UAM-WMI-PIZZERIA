@@ -111,7 +111,7 @@ export class Navbar extends Component {
         {/* Search bar */}
         <div className={classNames('search-bar', isSearchBarOpen ? 'open' : 'closed')}>
           <input
-            type="text" 
+            type="text"
             className="search-input"
             value={searchControl.value}
             onChange={(e) => searchControl.setValue(e.target.value)}

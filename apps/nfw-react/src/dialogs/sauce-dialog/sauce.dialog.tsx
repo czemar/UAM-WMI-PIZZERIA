@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react';
 import { Dialog } from '../../libs/dialog/dialog.class';
 import { translate } from '../../pipes/translate.pipe';
 import { Button } from '../../components/button-component/button.component';
 import { DialogWrapper } from '../../components/dialog-wrapper-component/dialog-wrapper.component';
-import CheckboxList from '../../components/checkbox-list-component/checkbox-list.component';
 import { Redirect } from 'react-router-dom';
 import { ReactiveControl } from '../../libs/reactive-forms/classes/reactive-control.class';
 import { ISauce } from '../../interfaces/souce.interface';
 import { SauceService } from '../../services/sauce.service';
 import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
+import RadioList from '../../components/radio-list-component/radio-list.component';
+import { currency } from '../../pipes/currency.pipe';
+import { Spinner } from '../../components/spinner-component/spinner.component';
 
 export class SauceDialog extends Dialog {
 
@@ -83,16 +85,20 @@ export class SauceDialog extends Dialog {
 
     return (
       <DialogWrapper title={translate('Select sauce')} footer={footer}>
-        {/* <CheckboxList
-          control={sauce}
-          checkboxes={ingredients}
-          template={(ingredient: IIngredient) => (
-            <div className="flex justify-between flex-grow">
-              <p>{ingredient.name}</p>
-              <p>{currency(ingredient.price)}</p>
-            </div>
-          )}
-        /> */}
+        { sauces.length ?
+          <RadioList
+            control={sauce}
+            radios={sauces}
+            template={(sauce: ISauce) => (
+              <div className="flex justify-between flex-grow">
+                <p>{sauce.name}</p>
+                <p>{currency(sauce.price)}</p>
+              </div>
+            )}
+          />
+          :
+          <Spinner />
+        }
       </DialogWrapper>
     )
   }
