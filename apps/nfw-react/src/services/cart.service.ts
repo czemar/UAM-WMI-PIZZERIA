@@ -1,12 +1,12 @@
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { EStorageKeys } from '../enums/storage-keys.enum';
-import { IPizza } from '../interfaces/pizza.interface';
 import { PersistentSubject } from '../libs/observables/persistent-subject.class';
 import { Service } from '../libs/service/service.class';
 import { PizzaService } from './pizza.service';
 import { IPartialPizzaOrder, IPartialSauceOrder } from '../interfaces/order.interface';
 
 export class CartService extends Service {
+
   // --- Dependencies ---
   private pizzaService: PizzaService = PizzaService.instance();
 
@@ -46,14 +46,25 @@ export class CartService extends Service {
     )
   }
 
+  /**
+   * Returns list of pizzas in cart
+   * @returns Observable of cart
+   */
   public list() {
     return this.list$;
   }
 
+  /**
+   * Clear cart
+   */
   public clear() {
     this.list$.next([]);
   }
 
+  /**
+   * Returns total price of cart
+   * @returns Observable of total price
+   */
   public total() {
     return this.list$.pipe(
       map(
@@ -63,6 +74,14 @@ export class CartService extends Service {
         )
       )
     )
+  }
+
+  public pizzas(): Observable<IPartialPizzaOrder[]> {
+    return this.list$.pipe(
+      map(list => {
+        return list.filter(item => this.pizzaService.isPizza(item)) as IPartialPizzaOrder[]
+      })
+    );
   }
 
 }

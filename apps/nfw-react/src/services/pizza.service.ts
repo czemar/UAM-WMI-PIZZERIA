@@ -100,7 +100,7 @@ export class PizzaService extends Service {
    * Returns true if passed object is pizza
    * @param pizza object to check
    */
-  public isPizza(pizza: IPizza | IPartialPizzaOrder): boolean {
+  public isPizza(pizza: IPizza | IPartialPizzaOrder | any): boolean {
     return Boolean(pizza.ingredients && pizza.id && pizza.price);
   }
 

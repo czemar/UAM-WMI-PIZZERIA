@@ -3,6 +3,7 @@ export const pl = {
   'ADD TO CART': 'Zamów',
   'Additional ingredients': 'Dodatkowe składniki',
   'Cart': 'Koszyk',
+  'Cart is empty': 'Koszyk jest pusty',
   'for 32 cm size': 'o średnicy 32 cm',
   'Go back': 'Wstecz',
   'Go to home page': 'Przejdź do strony głównej',
@@ -14,4 +15,5 @@ export const pl = {
   'Something went wrong during fetching data from server...': 'Coś poszło nie tak podczas łączenia z serwerem...',
   'Summary': 'Podsumowanie',
   'Total': 'Suma',
+  'Success': 'Sukces',
 }

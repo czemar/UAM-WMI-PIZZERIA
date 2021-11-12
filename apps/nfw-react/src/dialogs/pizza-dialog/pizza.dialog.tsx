@@ -22,7 +22,6 @@ import { IPartialPizzaOrder } from '../../interfaces/order.interface';
 import './pizza.dialog.scss';
 import groupBy from 'lodash-es/groupBy';
 import identity from 'lodash-es/identity';
-import { mapValues } from 'lodash-es';
 import { Redirect } from 'react-router-dom';
 
 export class PizzaDialog extends Dialog {

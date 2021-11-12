@@ -3,7 +3,7 @@ import { DialogWrapper } from "../../components/dialog-wrapper-component/dialog-
 import { Dialog } from "../../libs/dialog/dialog.class";
 import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
-import { IPartialPizzaOrder } from '../../interfaces/order.interface';
+import { IPartialPizzaOrder, IPartialOrder } from '../../interfaces/order.interface';
 import { currency } from '../../pipes/currency.pipe';
 import { PizzaService } from '../../services/pizza.service';
 import { IIngredient } from '../../interfaces/ingredient.interface';
@@ -17,19 +17,25 @@ import './cart.dialog.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '../../components/button-component/button.component';
+import { OrderService } from '../../services/order.service';
+import { DialogService } from '../../services/dialog.service';
+import { SuccessDialog } from '../success-dialog/success.dialog';
 
 export class CartDialog extends Dialog {
 
   // -- dependencies --
-  private cartService: CartService = CartService.instance();
-  private pizzaService: PizzaService = PizzaService.instance();
-  private ingredientService: IngredientsService = IngredientsService.instance();
+  private readonly cartService: CartService = CartService.instance();
+  private readonly pizzaService: PizzaService = PizzaService.instance();
+  private readonly ingredientService: IngredientsService = IngredientsService.instance();
+  private readonly orderService: OrderService = OrderService.instance();
+  private readonly dialogService: DialogService = DialogService.instance();
 
   // -- subscriptions --
   private cartListSubscription: Subscription;
   private pizzasListSubscription: Subscription;
   private ingredientsListSubscription: Subscription;
   private totalSubscription: Subscription;
+  private orderSubscription: Subscription;
 
   // -- state --
   public state = {
@@ -37,7 +43,9 @@ export class CartDialog extends Dialog {
     pizzas: [] as IPizza[],
     ingredients: [] as IIngredient[],
     sauces: [] as ISauce[],
-    total: 0 as number
+    total: 0 as number,
+    order: null as IPartialOrder,
+    orderInProgress: false as boolean
   }
 
   // -- constructor --
@@ -63,7 +71,7 @@ export class CartDialog extends Dialog {
     });
     this.totalSubscription = this.cartService.total().subscribe((total) => {
       this.setState({ total });
-    })
+    });
   }
 
   componentWillUnmount(): void {
@@ -98,13 +106,31 @@ export class CartDialog extends Dialog {
     )).map((v) => v.length > 1 ? `${v.length} x ${v[0]}` : v[0]);
   }
 
-  private order() {
+  private async order() {
+    const { orderInProgress } = this.state;
+    if (orderInProgress) return;
 
+    this.setState({ orderInProgress: true });
+
+    (await this.orderService.order())
+      .catchError(() => {
+        this.setState({ orderInProgress: false });
+      }).subscribe((response) => {
+        if (!response || (response as any).statusCode === 400) {
+          return;
+        }
+
+        this.setState({ orderInProgress: false });
+        setTimeout(() => {
+          this.dialogService.open(SuccessDialog);
+          this.cartService.clear();
+        }, 100);
+      });
   }
 
   // -- render --
   render() {
-    const { cart, total } = this.state;
+    const { cart, total, orderInProgress } = this.state;
 
     if (!cart) {
       return (
@@ -116,7 +142,7 @@ export class CartDialog extends Dialog {
 
     const footer = (
       <div onClick={ this.order }>
-        <Button variant="primary" className="w-full">
+        <Button variant="primary" className="w-full" pending={ orderInProgress }>
           {translate('Order')}
         </Button>
       </div>
