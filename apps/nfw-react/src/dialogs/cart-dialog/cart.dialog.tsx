@@ -2,7 +2,7 @@ import React from 'react';
 import { DialogWrapper } from "../../components/dialog-wrapper-component/dialog-wrapper.component";
 import { Dialog } from "../../libs/dialog/dialog.class";
 import { CartService } from '../../services/cart.service';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { IPartialPizzaOrder, IPartialOrder } from '../../interfaces/order.interface';
 import { currency } from '../../pipes/currency.pipe';
 import { PizzaService } from '../../services/pizza.service';
@@ -112,7 +112,7 @@ export class CartDialog extends Dialog {
 
     this.setState({ orderInProgress: true });
 
-    (await this.orderService.order())
+    const subscription = (await this.orderService.order())
       .catchError(() => {
         this.setState({ orderInProgress: false });
       }).subscribe((response) => {
@@ -120,11 +120,10 @@ export class CartDialog extends Dialog {
           return;
         }
 
-        this.setState({ orderInProgress: false });
-        setTimeout(() => {
-          this.dialogService.open(SuccessDialog);
-          this.cartService.clear();
-        }, 100);
+        this.dialogService.open(SuccessDialog);
+        this.cartService.clear();
+
+        subscription.unsubscribe();
       });
   }
 
